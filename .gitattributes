@@ -1,2 +1,109 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+import random
+
+player = input('What is your name')
+
+print('Good Luck!', player)
+
+words = ['security', 'population', 'seminar', 'cooperation', 'empirical', 'budget', 'mechanism', 'constitutional', 'accreditation', 'authorization', 'bankruptcy', 'belarus', 'bibliography', 'cardiovascular', 'cartridges', 'catalogue', 'characteristic', 
+         'daughters', 'declaration', 'ecological', 'ecommerce', 'efficiently', 'fellowship', 'financial', 'florence', 'greenhouse', 'grove', 'habitat', 'headquarters', 'humanity', 'identification', 'implementation', 'kilometers', 'likelihood', 'literacy', 'magnificent', 
+         'manufacturer', 'numerical', 'occasionally', 'omissions', 'parameter', 'penetration', 'ratios', 'receptors', 'reflections', 'schema', 'technological', 'unfortunately', 'validation', 'wisconsin', 'zoophilia', 'yields', 'weapons', 'trauma', 'support', 'stretch', 'roughly']
+
+word = random.choices(words)
+
+print('Guess the letters')
+
+for x in word:
+    print('_', end=' ')
+
+def print_hangman(wrong):
+    if(wrong == 0):
+        print('\n+---+')
+        print('    |')
+        print('    |')
+        print('    |')
+        print('   ===')
+    elif(wrong == 1):
+        print('\n+---+')
+        print('o   |')
+        print('    |')
+        print('    |')
+        print('   ===')
+    elif(wrong == 2):
+        print('\n+---+')
+        print('o   |')
+        print('|   |')
+        print('    |')
+        print('   ===')
+    elif(wrong == 3):
+        print('\n+---+')
+        print(' o  |')
+        print('/|  |')
+        print('    |')
+        print('   ===')
+    elif(wrong == 4):
+        print('\n+---+')
+        print(' o  |')
+        print('/|\ |')
+        print('    |')
+        print('   ===')
+    elif(wrong == 5):
+        print('\n+---+')
+        print(' o  |')
+        print('/|\ |')
+        print('/   |')
+        print('   ===')
+    elif(wrong == 6):
+        print('\n+---+')
+        print(' o  |')
+        print('/|\ |')
+        print('/ \ |')
+        print('   ===')
+    
+def print_word(guesses):
+    counter = 0
+    correctLetter = 0
+    for letter in word:
+        if letter in guesses:
+            print(word[counter], end= ' ')
+            correctLetter += 1
+        else: 
+            print(' ', end=' ')
+        counter += 1
+    return correctLetter
+
+def print_lines():
+    print('\r')
+    for letter in word:
+        print('\u203E', end=' ')
+
+length_of_word_to_guess = len(word)
+amount_of_times_wrong = 0
+current_guess_index = 0
+current_letters_guessed = []
+current_letters_right = 0
+
+while amount_of_times_wrong != current_letters_right != length_of_word_to_guess:
+    print('\nLetters guessed so far: ')
+    for letter in current_letters_guessed:
+        print(letter, end=' ')
+
+    letter_guessed = input('\nGuess a letter: ')
+
+    if word[current_guess_index] == letter_guessed:
+        print_hangman(amount_of_times_wrong)
+
+        current_guess_index += 1
+        current_letters_guessed.append(letter_guessed)
+        current_letters_right = print_word(current_letters_guessed)
+        print_lines()
+
+    else:
+        amount_of_times_wrong += 1
+        current_letters_guessed.append(letter_guessed)
+        print_hangman(amount_of_times_wrong)
+        current_letters_right = print_word(current_letters_guessed)
+        print_lines()
+
+print('Game is over!')
+
+
