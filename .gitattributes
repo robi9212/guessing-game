@@ -3,6 +3,7 @@ import random
 player = input('What is your name')
 
 print('Good Luck!', player)
+print('--------------------------------------------------------')
 
 words = ['security', 'population', 'seminar', 'cooperation', 'empirical', 'budget', 'mechanism', 'constitutional', 'accreditation', 'authorization', 'bankruptcy', 'belarus', 'bibliography', 'cardiovascular', 'cartridges', 'catalogue', 'characteristic', 
          'daughters', 'declaration', 'ecological', 'ecommerce', 'efficiently', 'fellowship', 'financial', 'florence', 'greenhouse', 'grove', 'habitat', 'headquarters', 'humanity', 'identification', 'implementation', 'kilometers', 'likelihood', 'literacy', 'magnificent', 
@@ -63,7 +64,7 @@ def print_word(guesses):
     counter = 0
     correctLetter = 0
     for letter in word:
-        if letter in guesses:
+        if (letter in guesses):
             print(word[counter], end= ' ')
             correctLetter += 1
         else: 
@@ -82,12 +83,12 @@ current_guess_index = 0
 current_letters_guessed = []
 current_letters_right = 0
 
-while amount_of_times_wrong != current_letters_right != length_of_word_to_guess:
+while amount_of_times_wrong != 6 and current_letters_right != length_of_word_to_guess:
     print('\nLetters guessed so far: ')
     for letter in current_letters_guessed:
         print(letter, end=' ')
 
-    letter_guessed = input('\nGuess a letter: ')
+    letter_guessed = input('\nPlease guess a letter: ')
 
     if word[current_guess_index] == letter_guessed:
         print_hangman(amount_of_times_wrong)
