@@ -3,13 +3,13 @@ import random
 player = input('What is your name')
 
 print('Good Luck!', player)
-print('--------------------------------------------------------')
+print('--------------------------------------------------')
 
-words = ['security', 'population', 'seminar', 'cooperation', 'empirical', 'budget', 'mechanism', 'constitutional', 'accreditation', 'authorization', 'bankruptcy', 'belarus', 'bibliography', 'cardiovascular', 'cartridges', 'catalogue', 'characteristic', 
-         'daughters', 'declaration', 'ecological', 'ecommerce', 'efficiently', 'fellowship', 'financial', 'florence', 'greenhouse', 'grove', 'habitat', 'headquarters', 'humanity', 'identification', 'implementation', 'kilometers', 'likelihood', 'literacy', 'magnificent', 
-         'manufacturer', 'numerical', 'occasionally', 'omissions', 'parameter', 'penetration', 'ratios', 'receptors', 'reflections', 'schema', 'technological', 'unfortunately', 'validation', 'wisconsin', 'zoophilia', 'yields', 'weapons', 'trauma', 'support', 'stretch', 'roughly']
+words = ['security', 'population', 'seminar', 'cooperation', 'empirical', 'budget', 'mechanism', 'bankruptcy', 'belarus', 'bibliography', 'cartridges', 'catalogue',  
+         'daughters', 'declaration', 'ecological', 'ecommerce', 'efficiently', 'fellowship', 'financial', 'florence', 'greenhouse', 'grove', 'kilometers', 'likelihood',
+        'numerical', 'parameter', 'penetration', 'ratios', 'receptors', 'reflections', 'schema', 'technological', 'yields', 'weapons', 'trauma', 'support', 'stretch', 'roughly']
 
-word = random.choices(words)
+word = random.choice(words)
 
 print('Guess the letters')
 
