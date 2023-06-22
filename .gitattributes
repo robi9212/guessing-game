@@ -9,102 +9,132 @@ words = ['security', 'population', 'seminar', 'cooperation', 'empirical', 'budge
          'daughters', 'declaration', 'ecological', 'ecommerce', 'efficiently', 'fellowship', 'financial', 'florence', 'greenhouse', 'grove', 'kilometers', 'likelihood',
         'numerical', 'parameter', 'penetration', 'ratios', 'receptors', 'reflections', 'schema', 'technological', 'yields', 'weapons', 'trauma', 'support', 'stretch', 'roughly']
 
-word = random.choice(words)
+def random_word():
+    word = random.choice(words)
+    return word
 
-print('Guess the letters')
+HANGMANPICS = ['''
+    +---+
+    |   |
+        |
+        |
+        |
+        |
+   =========''','''
 
-for x in word:
-    print('_', end=' ')
+    +---+
+    |   |
+    o   |
+        |
+        |
+        |
+   =========''','''
 
-def print_hangman(wrong):
-    if(wrong == 0):
-        print('\n+---+')
-        print('    |')
-        print('    |')
-        print('    |')
-        print('   ===')
-    elif(wrong == 1):
-        print('\n+---+')
-        print('o   |')
-        print('    |')
-        print('    |')
-        print('   ===')
-    elif(wrong == 2):
-        print('\n+---+')
-        print('o   |')
-        print('|   |')
-        print('    |')
-        print('   ===')
-    elif(wrong == 3):
-        print('\n+---+')
-        print(' o  |')
-        print('/|  |')
-        print('    |')
-        print('   ===')
-    elif(wrong == 4):
-        print('\n+---+')
-        print(' o  |')
-        print('/|\ |')
-        print('    |')
-        print('   ===')
-    elif(wrong == 5):
-        print('\n+---+')
-        print(' o  |')
-        print('/|\ |')
-        print('/   |')
-        print('   ===')
-    elif(wrong == 6):
-        print('\n+---+')
-        print(' o  |')
-        print('/|\ |')
-        print('/ \ |')
-        print('   ===')
-    
-def print_word(guesses):
-    counter = 0
-    correctLetter = 0
-    for letter in word:
-        if (letter in guesses):
-            print(word[counter], end= ' ')
-            correctLetter += 1
-        else: 
-            print(' ', end=' ')
-        counter += 1
-    return correctLetter
+    +---+
+    |   |
+    o   |
+    |   |
+        |
+        |
+   =========''','''
 
-def print_lines():
-    print('\r')
-    for letter in word:
-        print('\u203E', end=' ')
+    +---+
+    |   |
+    o   |
+   /|   |
+        |
+        |
+   =========''','''
 
-length_of_word_to_guess = len(word)
-amount_of_times_wrong = 0
-current_guess_index = 0
-current_letters_guessed = []
-current_letters_right = 0
+    +---+
+    |   |
+    o   |
+   /|\  |
+        |
+        |
+   =========''','''
 
-while amount_of_times_wrong != 6 and current_letters_right != length_of_word_to_guess:
-    print('\nLetters guessed so far: ')
-    for letter in current_letters_guessed:
-        print(letter, end=' ')
+    +---+
+    |   |
+    o   |
+   /|\  |
+   /    |
+        |
+   ========''','''
 
-    letter_guessed = input('\nPlease guess a letter: ')
+    +---+
+    |   |
+    o   |
+   /|\  |
+   / \  |
+        |
+   ========''']
 
-    if word[current_guess_index] == letter_guessed:
-        print_hangman(amount_of_times_wrong)
+def Board(HANGMANPICS, wrong_letters, correct_letters, secret_word):
+    print(HANGMANPICS[len(wrong_letters)])
+    print()
 
-        current_guess_index += 1
-        current_letters_guessed.append(letter_guessed)
-        current_letters_right = print_word(current_letters_guessed)
-        print_lines()
+    print('missed letters', end=' ')
+    for letters in wrong_letters:
+        print(letters, end= ' ')
+    print()
 
+    blanks = '_'*len(secret_word)
+
+    for x in range(len(secret_word)):
+        if secret_word[x] in correct_letters:
+            blanks = blanks[:x] + secret_word + blanks[x+1:]
+
+    for letter in blanks:
+        print(letter, end = ' ')
+    print()
+
+def guessed(letters_guessed):
+    while True:
+        print('Guess a letter.')
+        guessed = input()
+        guessed = guessed.lower()
+        if len(guessed) != 1:
+            print('please select 1 letter')
+        elif guessed in letters_guessed:
+            print('already selected, pick another letter')
+        elif guessed not in 'abcdefghijklmnopqrstuvwxyz':
+            print('please select a letter')
+        elif:
+            return guessed
+
+def play_another_round():
+    print('do you want to play again? (yes or no)')
+    return input().lower().startswith('y')
+
+print(HANGMAN):
+    wrong_letters = ' ' 
+    correct_letters = ' '
+    secret_word = random_word(words)
+    game_over = False
+
+while True:
+    Board(HANGMANPICS, wrong_letters, correct_letters, secret_word)
+
+    guess = guessed(wrong_letters + correct_letters)
+
+    if guess in secret_word:
+        correct_letters = correct_letters + guessed
+
+    for x in range(len(secret_word)):
+        if secret_word[x] not in correct_letters:
+            found_all = False
+            break
+        if found_all:
+            print('Yes,' secret_word 'is correct')
+            game_over = True
+
+        if game_over:
+        if play_another_round():
+        wrong_letters = ' ' 
+        correct_letters = ' ' 
+        game_over = False
+        secret_word = random_word(words)
     else:
-        amount_of_times_wrong += 1
-        current_letters_guessed.append(letter_guessed)
-        print_hangman(amount_of_times_wrong)
-        current_letters_right = print_word(current_letters_guessed)
-        print_lines()
-
-print('Game is over!')
-
+        break
 
